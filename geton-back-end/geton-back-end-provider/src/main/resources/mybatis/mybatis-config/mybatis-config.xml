@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="callSettersOnNulls" value="true" />
+    </settings>
+
+    <typeAliases>
+        <package name="com.hexin.domain"/>
+    </typeAliases>
+    <!--<plugins>
+        <plugin interceptor="com.hexin.utils.mybatis.paginator.PageInterceptor">
+            <property name="dialectClass" value="com.hexin.utils.mybatis.paginator.dialect.MysqlDialect" />
+        </plugin>
+
+        &lt;!&ndash;乐观锁插件&ndash;&gt;
+        <plugin interceptor="com.hexin.mybatis.plugin.OptimisticLockPlugin">
+            <property name="versionColumn" value="version"/> &lt;!&ndash; 数据库中版本号字段的字段名称 &ndash;&gt;
+            <property name="versionField" value="version"/>
+        </plugin>
+    </plugins>-->
+
+</configuration>

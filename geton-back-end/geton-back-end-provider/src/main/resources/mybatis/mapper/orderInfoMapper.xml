@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    @author shengwen.zhang
+    @createDate 2017-10-18 11:03:27
+ -->
+<mapper namespace="com.hexin.repository.OrderMapper">
+    <sql id="base_columns">
+    id,order_customer_info_id,clue_id,order_number,purchase_type,car_brand_id,car_manufacturer,belong_to_store,belong_to_store_name,car_model_id,car_category_id,finance_id,customer_manager_id,customer_manager_name,order_contract_number,state,over_due,first_payment_time,first_payment_money,deposit_money,plate_numbers,vin,gps_numbers,create_time,create_name,update_name,update_time,version,first_payment_affirm_time
+    </sql>
+    <sql id="if">
+        <if test="id != null and id != ''">
+            AND id = #{id}
+        </if>
+        <if test="orderCustomerInfoId != null and orderCustomerInfoId != ''">
+            AND order_customer_info_id = #{orderCustomerInfoId}
+        </if>
+        <if test="clueId != null and clueId != ''">
+            AND clue_id = #{clueId}
+        </if>
+        <if test="orderNumber != null and orderNumber != ''">
+            AND order_number = #{orderNumber}
+        </if>
+        <if test="purchaseType != null and purchaseType != ''">
+            AND purchase_type = #{purchaseType}
+        </if>
+        <if test="carBrandId != null and carBrandId != ''">
+            AND car_brand_id = #{carBrandId}
+        </if>
+        <if test="carManufacturer != null and carManufacturer != ''">
+            AND car_manufacturer = #{carManufacturer}
+        </if>
+        <if test="belongToStore != null and belongToStore != ''">
+            AND belong_to_store = #{belongToStore}
+        </if>
+        <if test="belongToStoreName != null and belongToStoreName != ''">
+            AND belong_to_store_name = #{belongToStoreName}
+        </if>
+
+        <if test="carModelId != null and carModelId != ''">
+            AND car_model_id = #{carModelId}
+        </if>
+        <if test="carCategoryId != null and carCategoryId != ''">
+            AND car_category_id = #{carCategoryId}
+        </if>
+        <if test="financeId != null and financeId != ''">
+            AND finance_id = #{financeId}
+        </if>
+        <if test="customerManagerId != null and customerManagerId != ''">
+            AND customer_manager_id = #{customerManagerId}
+        </if>
+        <if test="customerManagerName != null and customerManagerName != ''">
+            AND customer_manager_name = #{customerManagerName}
+        </if>
+        <if test="orderContractNumber != null and orderContractNumber != ''">
+            AND order_contract_number = #{orderContractNumber}
+        </if>
+        <if test="state != null and state != ''">
+            AND state = #{state}
+        </if>
+        <if test="overDue != null and overDue != ''">
+            AND over_due = #{overDue}
+        </if>
+        <if test="firstPaymentTime != null and firstPaymentTime != ''">
+            AND first_payment_time = #{firstPaymentTime}
+        </if>
+        <if test="plateNumbers != null and plateNumbers != ''">
+            AND plate_numbers = #{plateNumbers}
+        </if>
+        <if test="vin != null and vin != ''">
+            AND vin = #{vin}
+        </if>
+        <if test="gpsNumbers != null and gpsNumbers != ''">
+            AND gps_numbers = #{gpsNumbers}
+        </if>
+    </sql>
+    <sql id="set">
+    <if test="purchaseType != null and purchaseType != ''">
+    purchase_type = #{purchaseType},
+    </if>
+    <if test="carBrandId != null and carBrandId != ''">
+    car_brand_id = #{carBrandId},
+    </if>
+    <if test="carManufacturer != null and carManufacturer != ''">
+    car_manufacturer = #{carManufacturer},
+    </if>
+    <if test="belongToStore != null and belongToStore != ''">
+    belong_to_store = #{belongToStore},
+    </if>
+    <if test="carModelId != null and carModelId != ''">
+    car_model_id = #{carModelId},
+    </if>
+    <if test="carCategoryId != null and carCategoryId != ''">
+    car_category_id = #{carCategoryId},
+    </if>
+    <if test="financeId != null and financeId != ''">
+    finance_id = #{financeId},
+    </if>
+    <if test="orderContractNumber != null and orderContractNumber != ''">
+    order_contract_number = #{orderContractNumber},
+    </if>
+    <if test="state != null and state != ''">
+    state = #{state},
+    </if>
+    <if test="overDue != null and overDue != ''">
+    over_due = #{overDue},
+    </if>
+    <if test="firstPaymentTime != null and firstPaymentTime != ''">
+    first_payment_time = #{firstPaymentTime},
+    </if>
+      <if test="firstPaymentMoney != null and firstPaymentMoney != ''">
+    first_payment_money = #{firstPaymentMoney},
+    </if>
+    <if test="depositMoney != null and depositMoney != ''">
+    deposit_money = #{depositMoney},
+    </if>
+    <if test="plateNumbers != null and plateNumbers != ''">
+    plate_numbers = #{plateNumbers},
+    </if>
+    <if test="vin != null and vin != ''">
+    vin = #{vin},
+    </if>
+    <if test="gpsNumbers != null and gpsNumbers != ''">
+    gps_numbers = #{gpsNumbers},
+    </if>
+    <if test="updateName != null and updateName != ''">
+    update_name = #{updateName},
+    </if>
+     <if test="paymentConfirmationPersonId != null and paymentConfirmationPersonId != ''">
+    	payment_confirmation_person_id = #{paymentConfirmationPersonId},
+    </if>
+     <if test="paymentConfirmationPerson != null and paymentConfirmationPerson != ''">
+    	payment_confirmation_person = #{paymentConfirmationPerson},
+    </if>
+     <if test="vehicleAuditingPersonID != null and vehicleAuditingPersonID != ''">
+    	vehicle_auditing_person_id = #{vehicleAuditingPersonID},
+    </if>
+     <if test="vehicleAuditingPerson != null and vehicleAuditingPerson != ''">
+    	vehicle_auditing_person = #{vehicleAuditingPerson},
+    </if>
+    
+     <if test="firstPaymentAffirmTime != null and firstPaymentAffirmTime != ''">
+    	first_payment_affirm_time = #{firstPaymentAffirmTime}
+    </if>
+    
+    </sql>
+
+    <resultMap id="OrderInfoMap" type="OrderInfo">
+        <result property="id" column="id"/>
+        <result property="orderCustomerInfoId" column="order_customer_info_id"/>
+        <result property="clueId" column="clue_id"/>
+        <result property="orderNumber" column="order_number"/>
+        <result property="purchaseType" column="purchase_type"/>
+        <result property="carBrandId" column="car_brand_id"/>
+        <result property="carManufacturer" column="car_manufacturer"/>
+        <result property="belongToStore" column="belong_to_store"/>
+        <result property="belongToStoreName" column="belong_to_store_name"/>
+        <result property="carModelId" column="car_model_id"/>
+        <result property="carCategoryId" column="car_category_id"/>
+        <result property="financeId" column="finance_id"/>
+        <result property="customerManagerId" column="customer_manager_id"/>
+        <result property="customerManagerName" column="customer_manager_name"/>
+        <result property="customerIdCode" column="id_code"/>
+        <result property="orderContractNumber" column="order_contract_number"/>
+        <result property="state" column="state"/>
+        <result property="overDue" column="over_due"/>
+        <result property="firstPaymentTime" column="first_payment_time"/>
+        <result property="plateNumbers" column="plate_numbers"/>
+        <result property="vin" column="vin"/>
+        <result property="gpsNumbers" column="gps_numbers"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createName" column="create_name"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="version" column="version"/>
+        <result property="carModelName" column="car_model_name"/>
+        <result property="subBrandName" column="sub_brand_name"/>
+        <result property="vehicleModelName" column="vehicle_model_name"/>
+        <result property="firstPaymentMoney" column="first_payment_money"/>
+        <result property="depositMoney" column="deposit_money"/>
+        <result property="orderAuditingId" column="orderAuditingId"/>
+        <result property="orderCustomerName" column="customer_name"/>
+        <result property="paymentConfirmationPersonId" column="payment_confirmation_person_id"/>
+        <result property="paymentConfirmationPerson" column="payment_confirmation_person"/>
+        <result property="vehicleAuditingPersonID" column="vehicle_auditing_person_id"/>
+        <result property="vehicleAuditingPerson" column="vehicle_auditing_person"/>
+        <result property="stateName" column="stateName"/>
+        <result property="color" column="colour_name"/>
+        <result property="firstPaymentAffirmTime" column="first_payment_affirm_time"/>
+        <result property="channelName" column="channel_name"/>
+    </resultMap>
+
+    <select id="findOneById" parameterType="int" resultMap="OrderInfoMap">
+        SELECT OI.*, CMI.sub_brand_name, CMI.vehicle_model_name, CMI.car_model_name FROM order_info OI
+        LEFT JOIN car_model_info CMI ON OI.car_category_id=CMI.id
+        WHERE OI.id=#{id}
+    </select>
+    <select id="findByMap" parameterType="map" resultMap="OrderInfoMap">
+        SELECT <include refid="base_columns" /> FROM order_info
+        <where>
+
+            <if test="orderCustomerInfoId != null and orderCustomerInfoId != ''">
+                AND order_customer_info_id = #{orderCustomerInfoId}
+            </if>
+            <if test="clueId != null and clueId != ''">
+                AND clue_id = #{clueId}
+            </if>
+            <if test="orderNumber != null and orderNumber != ''">
+                AND order_number = #{orderNumber}
+            </if>
+            <if test="orderContractNumber != null and orderContractNumber != ''">
+                AND order_contract_number = #{orderContractNumber}
+            </if>
+            <if test="state != null and state != ''">
+                AND state = #{state}
+            </if>
+            <if test="excludeState != null and excludeState != ''">
+                AND state != #{excludeState}
+            </if>
+        </where>
+    </select>
+    <insert id="insert" parameterType="OrderInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT order_info (id,order_customer_info_id,clue_id,order_number,purchase_type,car_brand_id,car_manufacturer,belong_to_store,belong_to_store_name,car_model_id,car_category_id,finance_id,customer_manager_id,customer_manager_name,order_contract_number,state,over_due,first_payment_time,plate_numbers,vin,gps_numbers,create_name,first_payment_money,deposit_money, channel_name, belong_channelbus_id,first_payment_affirm_time, submit_time,create_time)
+        VALUES (#{id},#{orderCustomerInfoId},#{clueId},#{orderNumber},#{purchaseType},#{carBrandId},#{carManufacturer},#{belongToStore},#{belongToStoreName},#{carModelId},#{carCategoryId},#{financeId},#{customerManagerId},#{customerManagerName},#{orderContractNumber},#{state},#{overDue},#{firstPaymentTime},#{plateNumbers},#{vin},#{gpsNumbers},#{createName},#{firstPaymentMoney},#{depositMoney}, #{channelName}, #{belongChannelbusId},#{firstPaymentAffirmTime},#{submitTime}, now())
+    </insert>
+    <update id="update" parameterType="int">
+        UPDATE order_info
+        <set>
+            update_time=now(),
+            <include refid="set"/>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+    <delete id="delete" parameterType="OrderInfo">
+        DELETE FROM order_info
+        <where>
+            <include refid="if"/>
+        </where>
+    </delete>
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM order_info WHERE id=#{id}
+    </delete>
+
+<select id="findByOrderNumber" parameterType="string" resultMap="OrderInfoMap">
+  SELECT * FROM order_info WHERE order_number = #{orderNumber}
+</select>
+</mapper>

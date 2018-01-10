@@ -1,0 +1,13 @@
+/target
+/classes
+/test-classes
+project.properties.bak
+/target
+geton_crm/**/*.iml
+#*****************ignore plugin config******************
+geton_crm/geton-crm-common/geton-crm-common.iml
+geton_crm/**/rebel.xml
+#geton_crm/geton-crm-common/src/main/resources/rebel.xml
+#geton_crm/geton-crm-jobs/src/main/resources/rebel.xml
+#geton_crm/geton-crm-web/src/main/resources/rebel.xml
+geton_crm/geton-crm-common/src/test
